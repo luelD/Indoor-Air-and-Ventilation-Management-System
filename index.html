@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Simple Air — MVP</title>
+
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+	<!-- PRO HEADER -->
+	<header class="topbar">
+		<div class="brand">
+			<img src="images/1.1.png" alt="JambertAir logo" class="logo" />
+			<span></span>
+		</div>
+
+		<nav class="nav">
+			<button class="nav-link active" data-section="home">Home</button>
+			<button class="nav-link" data-section="sensors">Sensors</button>
+			<button class="nav-link" data-section="control">Control</button>
+		</nav>
+	</header>
+
+	<main class="container">
+
+		<section id="home" class="section active">
+			<h1>Overview</h1>
+			<p class="note">
+				Simple air quality monitoring prototype.
+			</p>
+			<div class="card">
+				<h3>About This System</h3>
+				<p>
+				Indoor air and ventilation management system manages indoor air quality in real time and controls ventilation
+					to maintain a safe and comfortable environment. The system reads CO₂,
+					PM2.5, temperature, and humidity levels. When air quality drops, the fan
+					can automatically turn on to improve ventilation.
+				</p>
+			</div>
+		</section>
+
+		<section id="sensors" class="section">
+			
+			
+			<h1>Sensors</h1>
+
+			<div class="cards">
+				<div class="card" id="co2Card">
+					<h3>CO₂</h3>
+					<div class="value" id="co2">600 ppm</div>
+				</div>
+
+				<div class="card" id="pm25Card">
+					<h3>PM2.5</h3>
+					<div class="value" id="pm25">12 µg/m³</div>
+				</div>
+
+				<div class="card" id="tempCard">
+					<h3>Temperature</h3>
+					<div class="value" id="temp">22 °C</div>
+				</div>
+
+				<div class="card" id="humCard">
+					<h3>Humidity</h3>
+					<div class="value" id="hum">45 %</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="control" class="section">
+			<h1>Control</h1>
+
+		
+			<div class="card">
+				<p class="note">
+					Fan Status:
+					<strong id="fanStatus">Off</strong>
+				</p>
+
+				<div class="controls">
+					<button id="toggleFan" class="btn">
+						Turn Fan On
+					</button>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="footer">
+    <small>© 2026 JambertAir</small>
+</footer>
+
+
+	<script src="script.js"></script>
+</body>
+</html>
