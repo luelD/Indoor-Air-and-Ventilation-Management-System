@@ -96,9 +96,9 @@ body {
 .value { font-size: 1.5rem; font-weight: 600; }
 
 /* Sensor Alerts */
-.card.good { border-left: 4px solid #10b981; }      /* green */
-.card.warning { border-left: 4px solid #f59e0b; }   /* yellow */
-.card.danger { border-left: 4px solid #ef4444; }    /* red */
+.card.good { border-left: 4px solid #10b981; }      
+.card.warning { border-left: 4px solid #f59e0b; }  
+.card.danger { border-left: 4px solid #ef4444; }    
 
 /*Controls & Buttons*/
 .controls { margin-top: 12px; }
@@ -120,12 +120,12 @@ body {
 body {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh; /* ensure body fills viewport height */
+	min-height: 100vh;
 	margin: 0;
 }
 
 main.container {
-	flex: 1; /* takes remaining space to push footer down */
+	flex: 1; 
 }
 
 .footer {
