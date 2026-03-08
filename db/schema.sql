@@ -1,10 +1,12 @@
-CREATE DATABASE jambertair;
+-- Create database
+CREATE DATABASE IF NOT EXISTS jambertair;
 
 USE jambertair;
 
+
 -- TABLE 1: USERS
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -15,7 +17,7 @@ CREATE TABLE users (
 
 -- TABLE 2: SENSOR READINGS
 
-CREATE TABLE sensor_readings (
+CREATE TABLE IF NOT EXISTS sensor_readings (
     sensor_id INT AUTO_INCREMENT PRIMARY KEY,
     co2 INT NOT NULL,
     pm25 FLOAT NOT NULL,
@@ -24,38 +26,35 @@ CREATE TABLE sensor_readings (
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 -- TABLE 3: FAN STATUS
 
-CREATE TABLE fan_status (
+CREATE TABLE IF NOT EXISTS fan_status (
     fan_status_id INT AUTO_INCREMENT PRIMARY KEY,
     status ENUM('ON','OFF') NOT NULL,
-    user_id INT,
-    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE SET NULL
-        ON UPDATE CASCADE
+    user_id INT NULL,
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 -- TABLE 4: SYSTEM LOGS
 
-CREATE TABLE system_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    fan_status_id INT,
+CREATE TABLE IF NOT EXISTS system_logs (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NULL,
+    fan_status_id INT NULL,
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT fk_log_user FOREIGN KEY (user_id) REFERENCES users(user_id)
         ON DELETE SET NULL
         ON UPDATE CASCADE,
-       
-    FOREIGN KEY (fan_status_id) REFERENCES fan_status(id)
+    CONSTRAINT fk_log_fan FOREIGN KEY (fan_status_id) REFERENCES fan_status(fan_status_id)
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
 
--- Insert users
+
+-- INSERT USERS
 
 INSERT INTO users (username, email, password, role)
 VALUES 
@@ -63,15 +62,15 @@ VALUES
 ('user', 'user@jambertair.com', 'user123', 'user');
 
 
--- Insert  fan status
+-- INSERT FAN STATUS
 
 INSERT INTO fan_status (status, user_id)
 VALUES 
-('OFF', 1), 
+('OFF', 1),
 ('ON', 2);
 
 
--- Insert example logs
+-- INSERT SYSTEM LOGS
 
 INSERT INTO system_logs (user_id, fan_status_id, message)
 VALUES
