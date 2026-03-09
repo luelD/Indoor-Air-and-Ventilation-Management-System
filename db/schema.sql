@@ -1,23 +1,23 @@
 -- Create database
-CREATE DATABASE IF NOT EXISTS jambertair;
+CREATE DATABASE Indoor_Air;
 
-USE jambertair;
+USE Indoor_Air;
 
 
 -- TABLE 1: USERS
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin','user') DEFAULT 'user',
+    role ENUM('admin', 'manager','user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- TABLE 2: SENSOR READINGS
 
-CREATE TABLE IF NOT EXISTS sensor_readings (
+CREATE TABLE sensor_readings (
     sensor_id INT AUTO_INCREMENT PRIMARY KEY,
     co2 INT NOT NULL,
     pm25 FLOAT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS sensor_readings (
 
 -- TABLE 3: FAN STATUS
 
-CREATE TABLE IF NOT EXISTS fan_status (
+CREATE TABLE fan_status (
     fan_status_id INT AUTO_INCREMENT PRIMARY KEY,
     status ENUM('ON','OFF') NOT NULL,
     user_id INT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS fan_status (
 
 -- TABLE 4: SYSTEM LOGS
 
-CREATE TABLE IF NOT EXISTS system_logs (
+CREATE TABLE system_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NULL,
     fan_status_id INT NULL,
@@ -58,8 +58,9 @@ CREATE TABLE IF NOT EXISTS system_logs (
 
 INSERT INTO users (username, email, password, role)
 VALUES 
-('admin', 'admin@jambertair.com', 'admin123', 'admin'),
-('user', 'user@jambertair.com', 'user123', 'user');
+('admin', 'admina@.com', 'admin123', 'admin'),
+('manager', 'manager@.com', 'manager123', 'manager'),
+('user', 'user@.com', 'user123', 'user');
 
 
 -- INSERT FAN STATUS
